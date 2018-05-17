@@ -57,7 +57,7 @@ We have used **softmax** as activation function. The main advantage of using Sof
  1. The main file is updated-chatbot.py which trains and classifies the DNN model
  2. dataset.py creates the dataset from the raw files in dataset folder
  3. intent.py contains functions to add or edit intents inside the dataset
-	1. a. add_new_intent(intent): takes a whole intent as an argument and adds it to new-dataset.py
-    2. edit_intent(intent, parameter, value): takes as input the value of intent to match and then updates the value if parameter is present as key else creates a new key value pair in the current intent.
+	1. **add_new_intent(intent):** takes a whole intent as an argument and adds it to new-dataset.py
+    2. **edit_intent(intent, parameter, value):** takes as input the value of intent to match and then updates the value if parameter is present as key else creates a new key value pair in the current intent.
 
 
