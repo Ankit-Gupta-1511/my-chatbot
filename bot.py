@@ -155,9 +155,14 @@ def bow(sentence, words, show_details=False):
     return(np.array(bag))
     
     
+    
+
 """
-creating a response structure
-"""   
+contextualisation and response generation
+"""    
+
+# create a data structure to hold user context
+context = {}
 
 ERROR_THRESHOLD = 0.25
 def classify(sentence):
@@ -184,6 +189,17 @@ def response(sentence, userID='123', show_details=False):
                 if intent['Answer'] == results[0][0]:
                     # a random response from the intent
                     key = intent['Answer']
-                    return print(np.random.choice(intents[key]))
+                    
+                    # set context for this intent if necessary
+                    if 'context_set' in intent:
+                        if show_details: print ('context:', intent['context_set'])
+                        context[userID] = intent['context_set']
+
+                    # check if this intent is contextual and applies to this user's conversation
+                    if not 'context_filter' in intent or \
+                        (userID in context and 'context_filter' in intent and intent['context_filter'] == context[userID]):
+                        if show_details: print ('Answer:', intent['Answer'])
+                        # a random response from the intent
+                        return print(np.random.choice(intents[key]))
 
     results.pop(0)
